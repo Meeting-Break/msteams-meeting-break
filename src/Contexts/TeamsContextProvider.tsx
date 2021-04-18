@@ -12,11 +12,15 @@ interface Error {
 
 type TeamsContextProviderState = {
     teamsContext : any,
-    error: Error
+    error?: Error
 }
 
 class TeamsContextProvider extends Component<{}, TeamsContextProviderState> {
     getContext: Function
+    state: TeamsContextProviderState = {
+        teamsContext: {},
+        error: undefined
+    }
 
     constructor(props: any) {
         super(props);

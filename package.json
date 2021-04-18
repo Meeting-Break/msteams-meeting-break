@@ -23,6 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:teams": "pushd resources/Manifest; zip -r -X ../../meetingbreak.teams.zip .; popd",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
