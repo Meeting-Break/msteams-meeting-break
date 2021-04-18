@@ -35,13 +35,13 @@ class TeamsContextProvider extends Component<{}, TeamsContextProviderState> {
                     this.setState({
                         teamsContext: context,
                     })
-                    microsoftTeams.appInitialization.notifySuccess();
+                    appInitialization.notifySuccess();
                     return;
                 }
                 return Promise.reject("Error: Please make sure to run the app within teams as a tab app");
             })
             .catch((msg: appInitialization.IFailedRequest) => {
-                microsoftTeams.appInitialization.notifyFailure(msg);
+                appInitialization.notifyFailure(msg);
                 this.setState({
                     error: {
                         status: true,
