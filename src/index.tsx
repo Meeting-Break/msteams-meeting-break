@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import MeetingBreakApp from './Containers/MeetingBreakApp';
 import reportWebVitals from './reportWebVitals';
+import * as microsoftTeams from "@microsoft/teams-js";
 
+microsoftTeams.initialize();
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MeetingBreakApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
