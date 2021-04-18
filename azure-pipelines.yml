@@ -17,20 +17,10 @@ stages:
           vmImage: $(vmImageName)
 
         steps:
-          - script: npm install
-            displayName: "Install dependencies"
-
-          - script: npm run build
-            displayName: "Build"
-
-          - script: |
-              cp -r $(System.DefaultWorkingDirectory)/build $(Build.ArtifactStagingDirectory)
-            displayName: "Stage artifacts"
-
           - task: ArchiveFiles@2
             displayName: "Archive web app files"
             inputs:
-              rootFolderOrFile: "$(Build.ArtifactStagingDirectory)"
+              rootFolderOrFile: "$(System.DefaultWorkingDirectory)"
               includeRootFolder: false
               archiveType: zip
               archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
@@ -79,3 +69,4 @@ stages:
                     ScriptType: "Inline Script"
                     InlineScript: |
                       npm install
+                      npm run build
