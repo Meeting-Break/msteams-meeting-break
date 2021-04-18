@@ -3,11 +3,7 @@ import TeamsContextProvider from '../Contexts/TeamsContextProvider';
 import SurfaceSelector from './SurfaceSelector';
 
 class MeetingBreakApp extends Component {
-    constructor(props: any) {
-        super(props);
-    }
-
-  render() {
+    render() {
       return (
         <Fragment>
             <TeamsContextProvider>

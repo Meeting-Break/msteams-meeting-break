@@ -9,10 +9,6 @@ interface SurfaceSelectorProps {
 }
 
 class SurfaceSelector extends Component<SurfaceSelectorProps> {
-    constructor(props: SurfaceSelectorProps) {
-        super(props);
-    }
-
     render() {
         const { SidePanel } = Constants.Surfaces;
         const frameContext = this.props.teamsContext.frameContext;
