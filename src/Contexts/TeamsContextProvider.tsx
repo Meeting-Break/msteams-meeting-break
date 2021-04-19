@@ -10,7 +10,7 @@ interface Error {
     message: appInitialization.IFailedRequest
 }
 
-type TeamsContextProviderState = {
+interface TeamsContextProviderState {
     teamsContext : any,
     error?: Error
 }
