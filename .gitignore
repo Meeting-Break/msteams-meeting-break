@@ -24,3 +24,4 @@ yarn-error.log*
 
 meetingbreak.teams.zip
 resources/Manifest/manifest.json
+src/locales/*/*.js

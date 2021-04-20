@@ -1,7 +1,7 @@
-import { Form, FormButton, FormInput, Flex, Text, FlexItem } from "@fluentui/react-northstar";
-import { Component, Fragment } from "react";
+import { Form, FormButton, FormInput, Flex, Text } from "@fluentui/react-northstar"
+import { Component, Fragment } from "react"
+import { t } from '@lingui/macro'
 import { ToSeconds } from "../../Utilities/BreakTimeConversionHelpers"
-
 interface SetBreakTimeProps {
     setMeetingTime: (selectedTime: number) => void
 }
@@ -29,12 +29,12 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
         return(
             <Fragment>
                 <Flex gap="gap.medium" column>
-                    <Text content="How long is the break?"/>
+                    <Text content={t`SetBreakTime_Instructions`}/>
                     <Form onSubmit={this.onSubmit.bind(this)}>
                         <Flex gap="gap.medium">
                             <FormInput id="break-minutes"
                                     required
-                                    label="Minutes"
+                                    label={t`SetBreakTime_Minutes`}
                                     type="number"
                                     min={0}
                                     max={59}
@@ -44,7 +44,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                                     }}/>
                             <FormInput id="break-seconds"
                                     required
-                                    label="Seconds"
+                                    label={t`SetBreakTime_Seconds`}
                                     type="number"
                                     min={0}
                                     max={59}
@@ -53,7 +53,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                                         this.setState({ seconds: Number((e.currentTarget as HTMLInputElement).value)});
                                     }} />
                         </Flex>
-                        <FormButton content="Start"/>
+                        <FormButton content={t`SetBreakTime_Start`}/>
                     </Form>
                 </Flex>
             </Fragment>

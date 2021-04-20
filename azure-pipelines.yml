@@ -70,3 +70,5 @@ stages:
                     InlineScript: |
                       npm install
                       npm run build
+                      npm run extract
+                      npm run compile

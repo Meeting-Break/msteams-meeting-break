@@ -5,6 +5,9 @@
   "dependencies": {
     "@fluentui/react-icons-northstar": "^0.54.0",
     "@fluentui/react-northstar": "^0.54.0",
+    "@lingui/cli": "^3.8.9",
+    "@lingui/macro": "^3.8.9",
+    "@lingui/react": "^3.8.9",
     "@microsoft/teams-js": "^1.9.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
@@ -26,7 +29,9 @@
     "build:teams": "pushd resources; cp manifests/manifest.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meetingbreak.teams.zip .; popd; popd;",
     "build:teams:dev": "pushd resources; cp manifests/manifest.dev.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meetingbreak.teams.zip .; popd; popd;",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "eslintConfig": {
     "extends": [

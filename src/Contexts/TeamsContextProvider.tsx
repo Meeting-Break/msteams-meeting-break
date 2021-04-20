@@ -3,7 +3,7 @@ import { appInitialization, Context } from "@microsoft/teams-js";
 import TeamsContextService from '../Services/TeamsContextService';
 import Constants from '../Constants/AppConstants';
 
-const TeamsContext = React.createContext({});
+const TeamsContext = React.createContext<Context>({} as Context);
 
 interface Error {
     status: boolean,
@@ -17,14 +17,14 @@ interface TeamsContextProviderState {
 
 class TeamsContextProvider extends Component<{}, TeamsContextProviderState> {
     getContext: Function
-    state: TeamsContextProviderState = {
-        teamsContext: {},
-        error: undefined
-    }
 
     constructor(props: any) {
         super(props);
         this.getContext = TeamsContextService();
+        this.state = {
+            teamsContext: {},
+            error: undefined
+        }
     }
 
     componentDidMount() {
@@ -34,8 +34,9 @@ class TeamsContextProvider extends Component<{}, TeamsContextProviderState> {
                 if (frameContext === Constants.Surfaces.SidePanel) {
                     this.setState({
                         teamsContext: context,
+                    }, () => {
+                        appInitialization.notifySuccess();
                     })
-                    appInitialization.notifySuccess();
                     return;
                 }
                 return Promise.reject("Error: Please make sure to run the app within teams as a tab app");
