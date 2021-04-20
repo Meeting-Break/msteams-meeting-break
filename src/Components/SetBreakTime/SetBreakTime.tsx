@@ -2,6 +2,8 @@ import { Form, FormButton, FormInput, Flex, Text } from "@fluentui/react-northst
 import { Component, Fragment } from "react"
 import { t } from '@lingui/macro'
 import { ToSeconds } from "../../Utilities/BreakTimeConversionHelpers"
+import './SetBreakTime.scss'
+
 interface SetBreakTimeProps {
     setMeetingTime: (selectedTime: number) => void
 }
@@ -28,11 +30,11 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
     render() {
         return(
             <Fragment>
-                <Flex gap="gap.medium" column>
-                    <Text content={t`SetBreakTime_Instructions`}/>
+                <Flex id="break-container-flex" gap="gap.medium" column>
+                    <Text id="break-instructions-text" content={t`SetBreakTime_Instructions`} />
                     <Form onSubmit={this.onSubmit.bind(this)}>
-                        <Flex gap="gap.medium">
-                            <FormInput id="break-minutes"
+                        <Flex id="break-form-input-container-flex" gap="gap.medium"  space="evenly">
+                            <FormInput id="break-minutes-form-input"
                                     required
                                     label={t`SetBreakTime_Minutes`}
                                     type="number"
@@ -42,7 +44,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                                     onChange={(e) => {
                                         this.setState({ minutes: Number((e.currentTarget as HTMLInputElement).value)});
                                     }}/>
-                            <FormInput id="break-seconds"
+                            <FormInput id="break-seconds-form-input"
                                     required
                                     label={t`SetBreakTime_Seconds`}
                                     type="number"
@@ -53,7 +55,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                                         this.setState({ seconds: Number((e.currentTarget as HTMLInputElement).value)});
                                     }} />
                         </Flex>
-                        <FormButton content={t`SetBreakTime_Start`}/>
+                        <FormButton id="break-start-button"content={t`SetBreakTime_Start`}/>
                     </Form>
                 </Flex>
             </Fragment>
