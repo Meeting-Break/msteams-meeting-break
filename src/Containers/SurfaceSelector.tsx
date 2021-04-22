@@ -4,7 +4,7 @@ import { withTeamsContext } from '../Contexts/TeamsContextProvider';
 import Constants from '../Constants/AppConstants';
 import { Context, registerOnThemeChangeHandler } from '@microsoft/teams-js';
 import { Provider, teamsDarkV2Theme, teamsHighContrastTheme, ThemeInput} from '@fluentui/react-northstar'
-import { i18n, I18n } from '@lingui/core'
+import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { defaultLocale, dynamicActivate } from '../i18n'
 
@@ -55,7 +55,7 @@ class SurfaceSelector extends Component<SurfaceSelectorProps, SurfaceSelectorSta
                 return (
                     <Fragment>
                         <I18nProvider i18n={i18n}>
-                            <Provider theme={this.state.theme != undefined ? this.state.theme : this.getTheme(this.props.teamsContext.theme)}>
+                            <Provider theme={this.state.theme !== undefined ? this.state.theme : this.getTheme(this.props.teamsContext.theme)}>
                                 <SidePanelPage />
                             </Provider>
                         </I18nProvider>

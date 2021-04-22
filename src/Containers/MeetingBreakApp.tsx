@@ -1,14 +1,17 @@
 import { Component, Fragment } from 'react';
 import TeamsContextProvider from '../Contexts/TeamsContextProvider';
 import SurfaceSelector from './SurfaceSelector';
-
+import ApplicationInsightsContextProvider from '../Contexts/ApplicationInsightsContextProvider';
 class MeetingBreakApp extends Component {
+
     render() {
       return (
         <Fragment>
-            <TeamsContextProvider>
-                <SurfaceSelector/>
-            </TeamsContextProvider>
+            <ApplicationInsightsContextProvider>
+                <TeamsContextProvider>
+                    <SurfaceSelector/>
+                </TeamsContextProvider>
+            </ApplicationInsightsContextProvider>
         </Fragment>
       );
     }

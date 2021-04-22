@@ -6,9 +6,9 @@
     "packageName": "com.msteams.meeting.break",
     "developer": {
       "name": "Nitish Sachar",
-      "websiteUrl": "https://d70f76be3d98.ngrok.io",
-      "privacyUrl": "https://d70f76be3d98.ngrok.io/privacy",
-      "termsOfUseUrl": "https://d70f76be3d98.ngrok.io/terms-of-service"
+      "websiteUrl": "https://f3328fcfb95f.ngrok.io",
+      "privacyUrl": "https://f3328fcfb95f.ngrok.io/privacy",
+      "termsOfUseUrl": "https://f3328fcfb95f.ngrok.io/terms-of-service"
     },
     "name": {
       "short": "Meeting Break",
@@ -25,7 +25,7 @@
     "accentColor": "#ffffff",
     "configurableTabs": [
       {
-        "configurationUrl": "https://d70f76be3d98.ngrok.io/configure.html",
+        "configurationUrl": "https://f3328fcfb95f.ngrok.io/configure.html",
         "canUpdateConfiguration": true,
         "scopes": [
           "groupchat"
@@ -41,6 +41,6 @@
       "messageTeamMembers"
     ],
     "validDomains": [
-      "d70f76be3d98.ngrok.io"
+      "f3328fcfb95f.ngrok.io"
     ]
   }

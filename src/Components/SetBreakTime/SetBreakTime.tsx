@@ -1,11 +1,13 @@
 import { Form, FormButton, FormInput, Flex, Text } from "@fluentui/react-northstar"
+import { ReactPlugin } from "@microsoft/applicationinsights-react-js";
 import { Component, Fragment } from "react"
 import { t } from '@lingui/macro'
 import { ToSeconds } from "../../Utilities/BreakTimeConversionHelpers"
-import './SetBreakTime.scss'
+import './SetBreakTime.scss';
 
 interface SetBreakTimeProps {
-    setMeetingTime: (selectedTime: number) => void
+    setMeetingTime: (selectedTime: number) => void,
+    reactPlugin?: ReactPlugin
 }
 
 interface SetBreakTimeState {
