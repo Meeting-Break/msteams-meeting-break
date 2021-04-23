@@ -2,11 +2,11 @@ import { Form, FormButton, FormInput, Flex, Text } from "@fluentui/react-northst
 import { ReactPlugin } from "@microsoft/applicationinsights-react-js";
 import { Component, Fragment } from "react"
 import { t } from '@lingui/macro'
-import { ToSeconds } from "../../Utilities/BreakTimeConversionHelpers"
 import './SetBreakTime.scss';
+import { Duration } from "../../Types/Duration";
 
 interface SetBreakTimeProps {
-    setMeetingTime: (selectedTime: number) => void,
+    setMeetingTime: (breakTime: Duration) => void,
     reactPlugin?: ReactPlugin
 }
 
@@ -25,8 +25,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
     }
 
     private onSubmit() {
-        var seconds = ToSeconds(this.state.minutes, this.state.seconds)
-        this.props.setMeetingTime(seconds)
+        this.props.setMeetingTime(new Duration(this.state.minutes, this.state.seconds))
     }
 
     render() {
@@ -35,7 +34,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                 <Flex id="break-container-flex" gap="gap.medium" column>
                     <Text id="break-instructions-text" content={t`SetBreakTime_Instructions`} />
                     <Form onSubmit={this.onSubmit.bind(this)}>
-                        <Flex id="break-form-input-container-flex" gap="gap.medium"  space="evenly">
+                        <Flex id="break-form-input-container-flex" gap="gap.medium" space="evenly">
                             <FormInput id="break-minutes-form-input"
                                     required
                                     label={t`SetBreakTime_Minutes`}

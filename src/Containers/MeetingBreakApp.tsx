@@ -2,6 +2,7 @@ import { Component, Fragment } from 'react';
 import TeamsContextProvider from '../Contexts/TeamsContextProvider';
 import SurfaceSelector from './SurfaceSelector';
 import ApplicationInsightsContextProvider from '../Contexts/ApplicationInsightsContextProvider';
+import './MeetingBreakApp.scss'
 class MeetingBreakApp extends Component {
 
     render() {

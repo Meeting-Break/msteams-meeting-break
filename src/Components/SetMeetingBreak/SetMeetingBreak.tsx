@@ -1,19 +1,27 @@
 import { Component } from "react";
+import { Duration } from "../../Types/Duration";
 import { SetBreakTime } from "../SetBreakTime/SetBreakTime";
 
-interface SetMeetingBreakState {
-    selectedMeetingBreakTime: number
+interface SetMeetingBreakProps {
+    startBreak: (breakTime: Duration) => void,
+    visible?: boolean
 }
 
-export class SetMeetingBreak extends Component<{}, SetMeetingBreakState> {
 
-    private SetMeetingBreakTime(breakTime: number) {
-        this.setState({ selectedMeetingBreakTime: breakTime })
+export class SetMeetingBreak extends Component<SetMeetingBreakProps> {
+    private SetMeetingBreakTime(breakTime: Duration) {
+        this.props.startBreak(breakTime)
     }
 
     render() {
+        const setBreakTimeVisible = this.props.visible ?? true;
+
         return(
-            <SetBreakTime setMeetingTime={(selectedBreakTime) => {this.SetMeetingBreakTime(selectedBreakTime)}}/>
+            <div>
+            {setBreakTimeVisible &&
+                <SetBreakTime setMeetingTime={(selectedBreakTime) => {this.SetMeetingBreakTime(selectedBreakTime)}}/>
+            }
+            </div>
         )
     }
 }

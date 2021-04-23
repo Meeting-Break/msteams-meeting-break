@@ -13,6 +13,18 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: src/Components/BreakCountdownTimer/BreakCountdownTimer.tsx:5
+msgid "BreakCountDownTimer_RemainingTimeText"
+msgstr "Time remaining:"
+
+#: src/Components/BreakHeader/BreakHeader.tsx:6
+msgid "BreakHeader_ApplicationName"
+msgstr "Meeting Break"
+
+#: src/Components/BreakHeader/BreakHeader.tsx:7
+msgid "BreakHeader_BreakStarted"
+msgstr "A break is in progress."
+
 #: src/Components/SetBreakTime/SetBreakTime.tsx:20
 msgid "SetBreakTime_Instructions"
 msgstr "How long is the break?"
