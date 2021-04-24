@@ -12,6 +12,6 @@ export const BreakCountdownTimer = ({duration}: BreakCountdownTimerProps) =>
 <Fragment>
     <div id="break-countdown-timer">
         <Text id="break-countdown-timer-remaining-time-text"content={t`BreakCountDownTimer_RemainingTimeText`}/>
-        <Text id="break-countdown-timer-remaining-time" content={duration?.Minutes.toString() + ":" + duration?.Seconds.toString()}/>
+        <Text id="break-countdown-timer-remaining-time" content={duration?.Minutes.toString() + ":" + duration?.Seconds.toString().padStart(2, "0")}/>
     </div>
 </Fragment>
