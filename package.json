@@ -30,8 +30,8 @@
   "scripts": {
     "start": "npm run compile && react-scripts start",
     "build": "react-scripts build",
-    "build:teams": "pushd resources; cp manifests/manifest.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meetingbreak.teams.zip .; popd; popd;",
-    "build:teams:dev": "pushd resources; cp manifests/manifest.dev.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meetingbreak.teams.zip .; popd; popd;",
+    "build:teams": "pushd resources; cp manifests/manifest.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meeting-break-teams-package.zip .; popd; popd;",
+    "build:teams:dev": "pushd resources; cp manifests/manifest.dev.json Manifest/manifest.json; pushd Manifest; zip -r -X ../../meeting-break-teams-package.zip .; popd; popd;",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "extract": "lingui extract",
