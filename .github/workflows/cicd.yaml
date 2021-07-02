@@ -56,8 +56,13 @@ jobs:
       
       - name: "Download meeting break app"
         uses: actions/download-artifact@v2
+        id: download
         with:
           name: meeting-break-app
+          path: build
+      
+      - name: 'Echo download path'
+        run: echo ${{steps.download.outputs.download-path}}
 
       - name: 'Deploy to Azure'
         uses: azure/webapps-deploy@v2
