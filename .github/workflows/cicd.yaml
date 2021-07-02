@@ -43,6 +43,7 @@ jobs:
           name: meeting-break-teams-package
           path: meeting-break-teams-package.zip
   deploy:
+    name: "Deploy"
     #if: startsWith( github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest
