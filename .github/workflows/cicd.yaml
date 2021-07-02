@@ -44,7 +44,6 @@ jobs:
           path: meeting-break-teams-package.zip
   deploy:
     name: "Deploy"
-    #if: startsWith( github.ref, 'refs/tags/')
     needs: build
     runs-on: ubuntu-latest
     env:
@@ -60,9 +59,6 @@ jobs:
         with:
           name: meeting-break-app
           path: build
-      
-      - name: 'Echo download path'
-        run: echo ${{steps.download.outputs.download-path}}
 
       - name: 'Deploy to Azure'
         uses: azure/webapps-deploy@v2
