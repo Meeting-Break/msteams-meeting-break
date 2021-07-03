@@ -2,12 +2,18 @@ import { Component, Fragment } from 'react';
 import Break from '../Components/Break/Break';
 import { SetMeetingBreak } from '../Components/SetMeetingBreak/SetMeetingBreak';
 import { withTeamsContext } from '../Contexts/TeamsContextProvider';
+import { MeetingBreakService } from '../Services/MeetingBreakService';
 import { Duration } from '../Types/Duration';
 import { ToDuration } from '../Utilities/BreakTimeConversionHelpers';
 import './SidePanel.scss'
+import { withMeetingBreakServiceContext } from '../Contexts/MeetingBreakContextProvider';
+import { Context } from '@microsoft/teams-js';
+import { MeetingDetails } from '../Types/MeetingDetails';
+import { BreakDetails } from '../Types/BreakDetails';
 
 interface SidePanelProps {
-
+    meetingBreakService: MeetingBreakService,
+    teamsContext: Context
 }
 
 interface SidePanelState {
@@ -34,7 +40,19 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         clearInterval(this.timer!)
     }
 
-    private onBreakStart(selectedBreakTime: Duration) {
+    private async onBreakStart(selectedBreakTime: Duration) {
+        const meetingDetails: MeetingDetails = {
+            id: {
+                value: this.props.teamsContext.meetingId!
+            }
+        }
+        const breakDetails: BreakDetails = {
+            meeting: meetingDetails,
+            start: new Date(),
+            duration: selectedBreakTime,
+            cancelled: false
+        }
+        await this.props.meetingBreakService.upload(breakDetails)
         this.setState({breakDuration: selectedBreakTime})
         this.timer = setInterval(() => {
             const duration = ToDuration(this.state.breakDuration?.TotalSeconds! - 1)
@@ -58,5 +76,4 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
     }
 }
 
-export default withTeamsContext(SidePanel);
-
+export default withMeetingBreakServiceContext(withTeamsContext(SidePanel));

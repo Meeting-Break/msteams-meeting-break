@@ -1,15 +1,15 @@
 import { ToSeconds } from "../Utilities/BreakTimeConversionHelpers";
 
 export class Duration {
-	public Minutes = 0;
-	public Seconds = 0;
+	minutes = 0;
+	seconds = 0;
 
 	constructor(minutes: number, seconds: number) {
-		this.Minutes = minutes;
-		this.Seconds = seconds;
+		this.minutes = minutes;
+		this.seconds = seconds;
 	}
 
 	get TotalSeconds() {
-		return ToSeconds(this.Minutes, this.Seconds)
+		return ToSeconds(this.minutes, this.seconds)
 	}
 }
