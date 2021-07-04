@@ -10,6 +10,7 @@ import { withMeetingBreakServiceContext } from '../Contexts/MeetingBreakContextP
 import { Context } from '@microsoft/teams-js';
 import { MeetingDetails } from '../Types/MeetingDetails';
 import { BreakDetails } from '../Types/BreakDetails';
+import { MeetingID } from '../Types/MeetingID';
 
 interface SidePanelProps {
     meetingBreakService: MeetingBreakService,
@@ -28,6 +29,10 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         this.state = {
             breakDuration: undefined,
         }
+    }
+
+    async componentWillMount() {
+        await this.isTimerVisible()
     }
 
     componentWillUnmount() {
@@ -53,8 +58,13 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             cancelled: false
         }
         await this.props.meetingBreakService.upload(breakDetails)
-        this.setState({breakDuration: selectedBreakTime})
-        this.timer = setInterval(() => {
+        this.setState({breakDuration: selectedBreakTime}, () => {
+            this.timer = this.getTimer()
+        })
+    }
+
+    private getTimer() {
+        return setInterval(() => {
             const duration = ToDuration(this.state.breakDuration?.TotalSeconds! - 1)
             this.setState({ breakDuration: duration.TotalSeconds === 0 ? undefined : duration }, () => {
                 if (duration.TotalSeconds === 0) {
@@ -64,12 +74,32 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         }, 1000)
     }
 
+    private async isTimerVisible() {
+        const meetingId: MeetingID = {
+            value: this.props.teamsContext.meetingId!
+        }
+        const breakDetails = await this.props.meetingBreakService.download(meetingId);
+        if (!breakDetails || breakDetails.cancelled) {
+            return false;
+        }
+        const currentTime = new Date()
+        let remainingBreakDuration: Duration | undefined = undefined
+        if (((breakDetails.start.getTime() / 1000) + breakDetails.duration.TotalSeconds) > (currentTime.getTime() / 1000)) {
+            remainingBreakDuration = ToDuration(breakDetails.duration.TotalSeconds - ((currentTime.getTime() / 1000) - (breakDetails.start.getTime() / 1000)) )
+        }
+        this.setState({breakDuration: remainingBreakDuration},() => {
+            if (remainingBreakDuration) {
+                this.timer = this.getTimer()
+            }
+        })
+    }
+
     render() {
         return (
             <Fragment>
                 <div id="side-panel">
-                    <SetMeetingBreak visible={this.state.breakDuration === undefined} startBreak={(breakTime) => this.onBreakStart(breakTime) }/>
-                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined} />
+                    <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.breakDuration === undefined}/>
+                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } />
                 </div>
             </Fragment>
         );

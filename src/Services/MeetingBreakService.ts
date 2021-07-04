@@ -1,9 +1,10 @@
 import { BlobServiceClient, ContainerClient } from "@azure/storage-blob";
 import { BreakDetails } from "../Types/BreakDetails";
+import { Duration } from "../Types/Duration";
 import { MeetingID } from "../Types/MeetingID";
 
 export class MeetingBreakService {
-    private azureStorageSASUrl = "https://meetingbreakstorage.blob.core.windows.net/?sv=2020-08-04&ss=bfqt&srt=sco&sp=rwdlacuptfx&se=3000-07-04T01:24:35Z&st=2021-07-03T17:24:35Z&spr=https&sig=VpGZeJwhOAJSzgJmjDHInhzBbHs2kh8eAO7Ls0iGUng%3D"
+    private azureStorageSASUrl = "https://meetingbreakstorage.blob.core.windows.net/?sv=2020-08-04&ss=b&srt=co&sp=rwlactfx&se=3000-07-05T01:14:41Z&st=2021-07-04T17:14:41Z&spr=https&sig=6WhG1J4caW%2FvRrBbzucTuAlmNfkVsNzg%2Fz8y0vKpJEg%3D"
     private meetingBreaksContainerClient: ContainerClient
 
     constructor() {
@@ -18,10 +19,16 @@ export class MeetingBreakService {
     }
 
     public async download(id: MeetingID) {
-        const blockBlobContainer = this.meetingBreaksContainerClient.getBlockBlobClient(`${id.value}.json`)
-        const data = await (await (await blockBlobContainer.download()).blobBody)?.text()
-        if (!data)
-            return;
-        return JSON.parse(data);
+        try {
+            const blobContainer = this.meetingBreaksContainerClient.getBlobClient(`${id.value}.json`)
+            const data = await (await (await blobContainer.download()).blobBody)?.text()
+            const parsedData = JSON.parse(data!);
+            const breakDetails: BreakDetails = parsedData;
+            breakDetails.start = new Date(parsedData.start)
+            breakDetails.duration = new Duration(parsedData.duration.minutes, parsedData.duration.seconds)
+            return breakDetails;
+        } catch(e) {
+            return undefined;
+        }
     }
 }
