@@ -19,7 +19,8 @@ interface SidePanelProps {
 
 interface SidePanelState {
     breakDuration?: Duration,
-    isStartingBreak: boolean
+    isStartingBreak: boolean,
+    isCancelling: boolean
 }
 
 class SidePanel extends Component<SidePanelProps, SidePanelState> {
@@ -29,7 +30,8 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         super(props);
         this.state = {
             breakDuration: undefined,
-            isStartingBreak: false
+            isStartingBreak: false,
+            isCancelling: false
         }
     }
 
@@ -99,19 +101,21 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
     }
 
     private async onCancel() {
-        const meetingId: MeetingID = {
-            value: this.props.teamsContext.meetingId!
-        }
-        const existingBreakDetails = await this.props.meetingBreakService.download(meetingId)
-        if (!existingBreakDetails) {
-            return;
-        }
-        existingBreakDetails.cancelled = true
-        await this.props.meetingBreakService.upload(existingBreakDetails)
-        this.setState({breakDuration: undefined}, () => {
-            if (this.timer) {
-                clearInterval(this.timer)
+        this.setState({isCancelling: true}, async () => {
+            const meetingId: MeetingID = {
+                value: this.props.teamsContext.meetingId!
             }
+            const existingBreakDetails = await this.props.meetingBreakService.download(meetingId)
+            if (!existingBreakDetails) {
+                return;
+            }
+            existingBreakDetails.cancelled = true
+            await this.props.meetingBreakService.upload(existingBreakDetails)
+            this.setState({breakDuration: undefined, isCancelling: false}, () => {
+                if (this.timer) {
+                    clearInterval(this.timer)
+                }
+            })
         })
     }
 
@@ -120,7 +124,7 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             <Fragment>
                 <div id="side-panel">
                     <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/>
-                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } onCancel={() => this.onCancel()} />
+                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } onCancel={() => this.onCancel()} loading={this.state.isCancelling}/>
                 </div>
             </Fragment>
         );

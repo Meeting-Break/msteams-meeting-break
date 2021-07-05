@@ -10,9 +10,15 @@ interface BreakProps {
     breakDuration?: Duration,
     visible?: boolean
     onCancel: () => {}
+    loading: boolean
 }
 
 class Break extends Component<BreakProps> {
+
+    private getCancelButtonContent() {
+        return this.props.loading ? "" : t`Break_Cancel`
+    }
+
     render() {
         const isVisible = this.props.visible ?? true;
         return (
@@ -22,7 +28,7 @@ class Break extends Component<BreakProps> {
                     <BreakHeader creator={{FirstName: "Meeting"}}/>
                     <Divider />
                     <BreakCountdownTimer duration={this.props.breakDuration}/>
-                    <Button id="break-cancel-button" content={t`Break_Cancel`} onClick={this.props.onCancel}/>
+                    <Button id="break-cancel-button" content={this.getCancelButtonContent()} onClick={this.props.onCancel} loading={this.props.loading} disabled={this.props.loading}/>
                 </Fragment>
                 }
             </div>
