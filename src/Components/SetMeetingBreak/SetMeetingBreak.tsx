@@ -4,7 +4,8 @@ import { SetBreakTime } from "../SetBreakTime/SetBreakTime";
 
 interface SetMeetingBreakProps {
     startBreak: (breakTime: Duration) => void,
-    visible?: boolean
+    visible?: boolean,
+    isStartingBreak: boolean
 }
 
 
@@ -19,7 +20,7 @@ export class SetMeetingBreak extends Component<SetMeetingBreakProps> {
         return(
             <div>
             {setBreakTimeVisible &&
-                <SetBreakTime setMeetingTime={(selectedBreakTime) => {this.SetMeetingBreakTime(selectedBreakTime)}}/>
+                <SetBreakTime setMeetingTime={(selectedBreakTime) => {this.SetMeetingBreakTime(selectedBreakTime)}} loading={this.props.isStartingBreak}/>
             }
             </div>
         )

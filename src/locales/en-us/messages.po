@@ -13,30 +13,34 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/Components/BreakCountdownTimer/BreakCountdownTimer.tsx:5
+#: src/Components/BreakCountdownTimer/BreakCountdownTimer.tsx:14
 msgid "BreakCountDownTimer_RemainingTimeText"
 msgstr "Time remaining:"
 
-#: src/Components/BreakHeader/BreakHeader.tsx:6
+#: src/Components/BreakHeader/BreakHeader.tsx:16
 msgid "BreakHeader_ApplicationName"
 msgstr "Meeting Break"
 
-#: src/Components/BreakHeader/BreakHeader.tsx:7
+#: src/Components/BreakHeader/BreakHeader.tsx:17
 msgid "BreakHeader_BreakStarted"
 msgstr "A break is in progress."
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:20
+#: src/Components/Break/Break.tsx:25
+msgid "Break_Cancel"
+msgstr "Cancel"
+
+#: src/Components/SetBreakTime/SetBreakTime.tsx:35
 msgid "SetBreakTime_Instructions"
 msgstr "How long is the break?"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:23
+#: src/Components/SetBreakTime/SetBreakTime.tsx:40
 msgid "SetBreakTime_Minutes"
 msgstr "Minutes"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:26
+#: src/Components/SetBreakTime/SetBreakTime.tsx:50
 msgid "SetBreakTime_Seconds"
 msgstr "Seconds"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:30
+#: src/Components/SetBreakTime/SetBreakTime.tsx:59
 msgid "SetBreakTime_Start"
 msgstr "Start"

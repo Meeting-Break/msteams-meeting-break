@@ -18,7 +18,8 @@ interface SidePanelProps {
 }
 
 interface SidePanelState {
-    breakDuration?: Duration
+    breakDuration?: Duration,
+    isStartingBreak: boolean
 }
 
 class SidePanel extends Component<SidePanelProps, SidePanelState> {
@@ -28,6 +29,7 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         super(props);
         this.state = {
             breakDuration: undefined,
+            isStartingBreak: false
         }
     }
 
@@ -46,20 +48,22 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
     }
 
     private async onBreakStart(selectedBreakTime: Duration) {
-        const meetingDetails: MeetingDetails = {
-            id: {
-                value: this.props.teamsContext.meetingId!
+        this.setState({isStartingBreak: true}, async () => {
+            const meetingDetails: MeetingDetails = {
+                id: {
+                    value: this.props.teamsContext.meetingId!
+                }
             }
-        }
-        const breakDetails: BreakDetails = {
-            meeting: meetingDetails,
-            start: new Date(),
-            duration: selectedBreakTime,
-            cancelled: false
-        }
-        await this.props.meetingBreakService.upload(breakDetails)
-        this.setState({breakDuration: selectedBreakTime}, () => {
-            this.timer = this.getTimer()
+            const breakDetails: BreakDetails = {
+                meeting: meetingDetails,
+                start: new Date(),
+                duration: selectedBreakTime,
+                cancelled: false
+            }
+            await this.props.meetingBreakService.upload(breakDetails)
+            this.setState({breakDuration: selectedBreakTime, isStartingBreak: false}, () => {
+                this.timer = this.getTimer()
+            })
         })
     }
 
@@ -94,12 +98,29 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         })
     }
 
+    private async onCancel() {
+        const meetingId: MeetingID = {
+            value: this.props.teamsContext.meetingId!
+        }
+        const existingBreakDetails = await this.props.meetingBreakService.download(meetingId)
+        if (!existingBreakDetails) {
+            return;
+        }
+        existingBreakDetails.cancelled = true
+        await this.props.meetingBreakService.upload(existingBreakDetails)
+        this.setState({breakDuration: undefined}, () => {
+            if (this.timer) {
+                clearInterval(this.timer)
+            }
+        })
+    }
+
     render() {
         return (
             <Fragment>
                 <div id="side-panel">
-                    <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.breakDuration === undefined}/>
-                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } />
+                    <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/>
+                    <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } onCancel={() => this.onCancel()} />
                 </div>
             </Fragment>
         );

@@ -7,7 +7,8 @@ import { Duration } from "../../Types/Duration";
 
 interface SetBreakTimeProps {
     setMeetingTime: (breakTime: Duration) => void,
-    reactPlugin?: ReactPlugin
+    reactPlugin?: ReactPlugin,
+    loading: boolean
 }
 
 interface SetBreakTimeState {
@@ -26,6 +27,10 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
 
     private onSubmit() {
         this.props.setMeetingTime(new Duration(this.state.minutes, this.state.seconds))
+    }
+
+    private getSubmitButtonContent() {
+        return this.props.loading ? "" : t`SetBreakTime_Start` 
     }
 
     render() {
@@ -56,7 +61,7 @@ export class SetBreakTime extends Component<SetBreakTimeProps, SetBreakTimeState
                                         this.setState({ seconds: Number((e.currentTarget as HTMLInputElement).value)});
                                     }} />
                         </Flex>
-                        <FormButton id="break-start-button"content={t`SetBreakTime_Start`}/>
+                        <FormButton id="break-start-button" content={this.getSubmitButtonContent()} loading={this.props.loading} disabled={this.props.loading}/>
                     </Form>
                 </Flex>
             </Fragment>
