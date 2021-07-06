@@ -5,7 +5,7 @@
     "id": "73f09691-ebfb-448b-b528-67ee14d00519",
     "packageName": "com.msteams.meeting.break",
     "developer": {
-      "name": "Nitish Sachar",
+      "name": "Nybble Apps LLC",
       "websiteUrl": "https://msteams-meeting-break.ngrok.io",
       "privacyUrl": "https://msteams-meeting-break.ngrok.io/privacy",
       "termsOfUseUrl": "https://msteams-meeting-break.ngrok.io/terms-of-service"
@@ -37,8 +37,7 @@
       }
     ],
     "permissions": [
-      "identity",
-      "messageTeamMembers"
+      "identity"
     ],
     "validDomains": [
       "msteams-meeting-break.ngrok.io"

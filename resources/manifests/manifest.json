@@ -5,7 +5,7 @@
     "id": "73f09691-ebfb-448b-b528-67ee14d00519",
     "packageName": "com.msteams.meeting.break",
     "developer": {
-      "name": "Nitish Sachar",
+      "name": "Nybble Apps LLC",
       "websiteUrl": "https://msteamsmeetingbreak.com",
       "privacyUrl": "https://msteamsmeetingbreak.com/privacy",
       "termsOfUseUrl": "https://msteamsmeetingbreak.com/terms-of-service"
@@ -37,8 +37,7 @@
       }
     ],
     "permissions": [
-      "identity",
-      "messageTeamMembers"
+      "identity"
     ],
     "validDomains": [
       "msteamsmeetingbreak.azurewebsites.net"
