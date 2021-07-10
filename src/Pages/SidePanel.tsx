@@ -33,6 +33,7 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             isStartingBreak: false,
             isCancelling: false
         }
+        console.log(this.props.teamsContext)
     }
 
     async componentWillMount() {
