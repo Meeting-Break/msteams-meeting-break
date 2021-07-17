@@ -1,3 +1,6 @@
+import { Role } from "./Role";
+
 export interface Participant {
-	FirstName: string
+	name: string;
+	role?: Role;
 }

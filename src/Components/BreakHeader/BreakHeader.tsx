@@ -11,7 +11,7 @@ interface BreakHeaderProps {
 export const BreakHeader = ({ creator }: BreakHeaderProps) =>
 <Fragment>
     <div id="break-header">
-        <Avatar id="break-header-avatar" name={ creator.FirstName } />
+        <Avatar id="break-header-avatar" name={ creator.name } />
         <div id="break-header-details">
             <Text id="break-header-application-name" content={t`BreakHeader_ApplicationName`} />
             <Text id="break-header-break-started" content={t`BreakHeader_BreakStarted`} />

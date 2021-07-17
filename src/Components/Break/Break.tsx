@@ -25,7 +25,7 @@ class Break extends Component<BreakProps> {
             <div>
                 {isVisible &&
                 <Fragment>
-                    <BreakHeader creator={{FirstName: "Meeting"}}/>
+                    <BreakHeader creator={{name: "Meeting"}}/>
                     <Divider />
                     <BreakCountdownTimer duration={this.props.breakDuration}/>
                     <Button id="break-cancel-button" content={this.getCancelButtonContent()} onClick={this.props.onCancel} loading={this.props.loading} disabled={this.props.loading}/>

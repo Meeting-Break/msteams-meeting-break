@@ -44,3 +44,9 @@ msgstr "Seconds"
 #: src/Components/SetBreakTime/SetBreakTime.tsx:59
 msgid "SetBreakTime_Start"
 msgstr "Start"
+
+msgid "SidePanel_SetMeetingBreak_Error_Message"
+msgstr "Only the meeting organizer can start a break."
+
+msgid "SidePanel_Loading_Message"
+msgstr "Loading"

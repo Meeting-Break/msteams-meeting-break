@@ -41,5 +41,13 @@
     ],
     "validDomains": [
       "msteamsmeetingbreak.azurewebsites.net"
+    ],
+    "bots": [
+      {
+        "botId": "2ba69f2f-11d5-4a52-b009-e5084a750e62",
+        "scopes": [
+          "groupchat"
+        ]
+      }
     ]
   }
