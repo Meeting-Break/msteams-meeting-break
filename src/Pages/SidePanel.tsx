@@ -94,7 +94,6 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         const meetingId: MeetingID = {
             value: this.props.teamsContext.meetingId!
         }
-        console.log(this.props.teamsContext)
         const breakDetails = await this.props.meetingBreakService.getBreak(meetingId);
         this.setState({isLoading: false}, async () => {
             if (!breakDetails || breakDetails.cancelled) {
@@ -119,7 +118,6 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                 value: this.props.teamsContext.meetingId!
             }
             const existingBreakDetails = await this.props.meetingBreakService.getBreak(meetingId)
-            console.log(existingBreakDetails)
             if (!existingBreakDetails) {
                 return;
             }
