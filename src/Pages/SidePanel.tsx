@@ -43,7 +43,6 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
     }
 
     async componentWillMount() {
-        console.log("mounting")
         const participantDetails = await this.props.meetingBreakService.getParticipantDetails({value: this.props.teamsContext.meetingId!}, {value: this.props.teamsContext.userObjectId!}, {value: this.props.teamsContext.tid!})
         this.setState({isAllowedToStartBreak: participantDetails.role === Role.Organizer}, async () => {
             await this.isTimerVisible()
@@ -56,7 +55,7 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         }
     }
 
-    private onTimerComplete() {
+    private async onTimerComplete() {
         clearInterval(this.timer!)
     }
 
@@ -73,7 +72,7 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                 duration: selectedBreakTime,
                 cancelled: false
             }
-            await this.props.meetingBreakService.upload(breakDetails)
+            await this.props.meetingBreakService.setBreak(breakDetails)
             this.setState({breakDuration: selectedBreakTime, isStartingBreak: false}, () => {
                 this.timer = this.getTimer()
             })
@@ -95,7 +94,8 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
         const meetingId: MeetingID = {
             value: this.props.teamsContext.meetingId!
         }
-        const breakDetails = await this.props.meetingBreakService.download(meetingId);
+        console.log(this.props.teamsContext)
+        const breakDetails = await this.props.meetingBreakService.getBreak(meetingId);
         this.setState({isLoading: false}, async () => {
             if (!breakDetails || breakDetails.cancelled) {
                 return false;
@@ -118,12 +118,13 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             const meetingId: MeetingID = {
                 value: this.props.teamsContext.meetingId!
             }
-            const existingBreakDetails = await this.props.meetingBreakService.download(meetingId)
+            const existingBreakDetails = await this.props.meetingBreakService.getBreak(meetingId)
+            console.log(existingBreakDetails)
             if (!existingBreakDetails) {
                 return;
             }
             existingBreakDetails.cancelled = true
-            await this.props.meetingBreakService.upload(existingBreakDetails)
+            await this.props.meetingBreakService.setBreak(existingBreakDetails)
             this.setState({breakDuration: undefined, isCancelling: false}, () => {
                 if (this.timer) {
                     clearInterval(this.timer)

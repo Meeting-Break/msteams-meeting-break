@@ -13,7 +13,6 @@
     "compile": "lingui compile"
   },
   "dependencies": {
-    "@azure/storage-blob": "^12.6.0",
     "@fluentui/react-icons-northstar": "^0.57.0",
     "@fluentui/react-northstar": "^0.57.0",
     "@lingui/react": "^3.10.2",

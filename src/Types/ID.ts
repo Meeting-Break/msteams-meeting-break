@@ -1,3 +1,3 @@
 export interface ID {
-    value: String
+    value: string
 }
