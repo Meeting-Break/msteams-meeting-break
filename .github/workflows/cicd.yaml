@@ -31,7 +31,7 @@ jobs:
       - run: npm run build:teams
         name: "Build teams package"
 
-      - run: pushd build/; zip -9 -r ../app.zip *;popd; zip -ur app.zip package.json package-lock.json
+      - run: zip -9 -r app.zip .
         name: "Compress"
 
       - name: "Upload app artifact"
@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AZURE_WEBAPP_NAME: msteamsmeetingbreak
-      AZURE_WEBAPP_PACKAGE_PATH: 'build/app.zip' 
+      AZURE_WEBAPP_PACKAGE_PATH: './app.zip' 
     steps:
       - uses: actions/checkout@v2
         name: "Checkout"
@@ -61,7 +61,7 @@ jobs:
         id: download
         with:
           name: meeting-break-app
-          path: build
+          path: ./
 
       - name: 'Deploy to Azure'
         uses: azure/webapps-deploy@v2
