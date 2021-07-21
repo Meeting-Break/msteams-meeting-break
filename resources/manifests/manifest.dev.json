@@ -7,8 +7,8 @@
     "developer": {
       "name": "Nybble Apps LLC",
       "websiteUrl": "https://msteams-meeting-break.ngrok.io",
-      "privacyUrl": "https://msteams-meeting-break.ngrok.io/privacy",
-      "termsOfUseUrl": "https://msteams-meeting-break.ngrok.io/terms-of-service"
+      "privacyUrl": "https://msteams-meeting-break.ngrok.io/privacy.html",
+      "termsOfUseUrl": "https://msteams-meeting-break.ngrok.io/terms-of-service.html"
     },
     "name": {
       "short": "Meeting Break",

@@ -3,12 +3,12 @@
     "manifestVersion": "devPreview",
     "version": "1.0.0",
     "id": "73f09691-ebfb-448b-b528-67ee14d00519",
-    "packageName": "com.msteams.meeting.break",
+    "packageName": "app.meetingbreak",
     "developer": {
       "name": "Nybble Apps LLC",
-      "websiteUrl": "https://msteamsmeetingbreak.com",
-      "privacyUrl": "https://msteamsmeetingbreak.com/privacy",
-      "termsOfUseUrl": "https://msteamsmeetingbreak.com/terms-of-service"
+      "websiteUrl": "https://meetingbreak.app",
+      "privacyUrl": "https://meetingbreak.app/privacy.html",
+      "termsOfUseUrl": "https://meetingbreak.app/terms-of-service.html"
     },
     "name": {
       "short": "Meeting Break",
@@ -25,7 +25,7 @@
     "accentColor": "#ffffff",
     "configurableTabs": [
       {
-        "configurationUrl": "https://msteamsmeetingbreak.azurewebsites.net/configure.html",
+        "configurationUrl": "https://meetingbreak.app/configure.html",
         "canUpdateConfiguration": false,
         "scopes": [
           "groupchat"
@@ -40,7 +40,7 @@
       "identity"
     ],
     "validDomains": [
-      "msteamsmeetingbreak.azurewebsites.net"
+      "*.meetingbreak.app"
     ],
     "bots": [
       {
