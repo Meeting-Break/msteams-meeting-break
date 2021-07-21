@@ -20,6 +20,7 @@
     "@microsoft/applicationinsights-web": "^2.6.3",
     "@microsoft/teams-js": "^1.10.0",
     "axios": "^0.21.1",
+    "express": "^4.17.1",
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
