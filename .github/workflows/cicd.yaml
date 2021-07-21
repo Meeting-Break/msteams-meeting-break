@@ -31,7 +31,7 @@ jobs:
       - run: npm run build:teams
         name: "Build teams package"
 
-      - run: pushd build; zip -9 -r ../app.zip *; popd;
+      - run: pushd build; zip -9 -r ../app.zip *; popd; zip  -ur -r app.zip node_modules/
         name: "Compress"
 
       - name: "Upload app artifact"
