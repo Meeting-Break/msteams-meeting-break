@@ -31,11 +31,14 @@ jobs:
       - run: npm run build:teams
         name: "Build teams package"
 
+      - run: zip -9 -r app.zip .
+        name: "Compress"
+
       - name: "Upload app artifact"
         uses: actions/upload-artifact@v2
         with:
           name: meeting-break-app
-          path: build/
+          path: app.zip
         
       - name: "Upload teams package artifact"
         uses: actions/upload-artifact@v2
@@ -48,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AZURE_WEBAPP_NAME: msteamsmeetingbreak
-      AZURE_WEBAPP_PACKAGE_PATH: 'build' 
+      AZURE_WEBAPP_PACKAGE_PATH: 'build/app.zip' 
     steps:
       - uses: actions/checkout@v2
         name: "Checkout"
