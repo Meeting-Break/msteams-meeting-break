@@ -15,17 +15,20 @@ import { BreakDetails } from '../Types/BreakDetails';
 import { Role } from '../Types/Role';
 import { Alert, Loader } from '@fluentui/react-northstar';
 import { t } from '@lingui/macro';
+import { Participant } from '../Types/Participant';
 interface SidePanelProps {
     meetingBreakService: MeetingBreakService,
     teamsContext: Context
 }
 
 interface SidePanelState {
-    breakDuration?: Duration,
-    isStartingBreak: boolean,
-    isCancelling: boolean,
-    isAllowedToStartBreak: boolean,
-    isLoading: boolean
+    breakDuration?: Duration;
+    isStartingBreak: boolean;
+    isCancelling: boolean;
+    isAllowedToStartBreak: boolean;
+    isLoading: boolean;
+    currentUser?: Participant;
+    breakDetails?: BreakDetails;
 }
 
 class SidePanel extends Component<SidePanelProps, SidePanelState> {
@@ -38,13 +41,15 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             isStartingBreak: false,
             isCancelling: false,
             isAllowedToStartBreak: false,
-            isLoading: true
+            isLoading: true,
+            currentUser: undefined,
+            breakDetails: undefined
         }
     }
 
     async componentWillMount() {
-        const participantDetails = await this.props.meetingBreakService.getParticipantDetails({value: this.props.teamsContext.meetingId!}, {value: this.props.teamsContext.userObjectId!}, {value: this.props.teamsContext.tid!})
-        this.setState({isAllowedToStartBreak: participantDetails.role === Role.Organizer}, async () => {
+        const participant = await this.props.meetingBreakService.getParticipantDetails({value: this.props.teamsContext.meetingId!}, {value: this.props.teamsContext.userObjectId!}, {value: this.props.teamsContext.tid!})
+        this.setState({isAllowedToStartBreak: participant.role === Role.Organizer, currentUser: participant}, async () => {
             await this.isTimerVisible()
         })
     }
@@ -70,10 +75,11 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                 meeting: meetingDetails,
                 start: new Date(),
                 duration: selectedBreakTime,
-                cancelled: false
+                cancelled: false,
+                createdBy: this.state.currentUser!
             }
             await this.props.meetingBreakService.setBreak(breakDetails)
-            this.setState({breakDuration: selectedBreakTime, isStartingBreak: false}, () => {
+            this.setState({breakDuration: selectedBreakTime, isStartingBreak: false, breakDetails: breakDetails}, () => {
                 this.timer = this.getTimer()
             })
         })
@@ -139,8 +145,14 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                     :
                     this.state.isAllowedToStartBreak ? 
                         <Fragment>
-                            <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/>
-                            <Break breakDuration={this.state.breakDuration} visible={this.state.breakDuration !== undefined } onCancel={() => this.onCancel()} loading={this.state.isCancelling}/>    
+                            {/* <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/> */}
+                            <Break 
+                                breakDuration={this.state.breakDuration} 
+                                visible={ true } 
+                                onCancel={() => this.onCancel()} 
+                                loading={this.state.isCancelling} 
+                                breakDetails={this.state.breakDetails!}
+                                />    
                         </Fragment>
                         :
                         <Alert 

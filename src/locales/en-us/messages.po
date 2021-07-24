@@ -23,7 +23,7 @@ msgstr "Meeting Break"
 
 #: src/Components/BreakHeader/BreakHeader.tsx:17
 msgid "BreakHeader_BreakStarted"
-msgstr "A break is in progress."
+msgstr "has started a break."
 
 #: src/Components/Break/Break.tsx:25
 msgid "Break_Cancel"

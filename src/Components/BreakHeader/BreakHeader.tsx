@@ -8,13 +8,18 @@ interface BreakHeaderProps {
     creator: Participant
 }
 
+function getBreakStartedContent(name: string) {
+    const endPart = t `BreakHeader_BreakStarted`
+    return `${name} ${endPart}`
+}
+
 export const BreakHeader = ({ creator }: BreakHeaderProps) =>
 <Fragment>
     <div id="break-header">
-        <Avatar id="break-header-avatar" name={ creator.name } />
+        <Avatar id="break-header-avatar" name={ "Nitish Sachar" } />
         <div id="break-header-details">
             <Text id="break-header-application-name" content={t`BreakHeader_ApplicationName`} />
-            <Text id="break-header-break-started" content={t`BreakHeader_BreakStarted`} />
+            <Text id="break-header-break-started" content={getBreakStartedContent("Nitish Sachar")} />
         </div>
     </div>
 </Fragment>
