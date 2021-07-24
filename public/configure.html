@@ -16,15 +16,15 @@
             <h1>Success</h1>
             <h2>Successfully added Meeting Break to this meeting. Please press save to continue.</h2>
         </div>
-        <script src="node_modules/@microsoft/teams-js/dist/MicrosoftTeams.min.js"></script>
+        <script src="https://statics.teams.microsoft.com/sdk/v1.10.0/js/MicrosoftTeams.min.js" crossorigin="anonymous"></script>
         <script>
             microsoftTeams.initialize();
             microsoftTeams.appInitialization.notifySuccess();
             microsoftTeams.settings.registerOnSaveHandler(function (saveEvent) {
                 microsoftTeams.settings.setSettings({
-                    entityID: "Meeting Break",
+                    entityId: "Meeting Break",
                     contentUrl: `${window.location.origin}/index.html`,
-                    suggestedTabName: "Meeting Break",
+                    suggestedDisplayName: "Meeting Break",
                     websiteUrl: `${window.location.origin}/index.html`,
                 });
                 saveEvent.notifySuccess();

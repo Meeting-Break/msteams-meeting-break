@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "build:teams": "cp resources/manifests/manifest.json resources/Manifest/manifest.json; cd resources/Manifest; zip -r -X ../../meeting-break-teams-package.zip .; cd ../../",
     "build:teams:dev": "cp resources/manifests/manifest.dev.json resources/Manifest/manifest.json; cd resources/Manifest; zip -r -X ../../meeting-break-teams-package.zip .; cd ../../",
