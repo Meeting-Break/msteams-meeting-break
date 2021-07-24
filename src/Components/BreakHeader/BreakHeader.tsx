@@ -16,10 +16,10 @@ function getBreakStartedContent(name: string) {
 export const BreakHeader = ({ creator }: BreakHeaderProps) =>
 <Fragment>
     <div id="break-header">
-        <Avatar id="break-header-avatar" name={ "Nitish Sachar" } />
+        <Avatar id="break-header-avatar" name={ creator.name } />
         <div id="break-header-details">
             <Text id="break-header-application-name" content={t`BreakHeader_ApplicationName`} />
-            <Text id="break-header-break-started" content={getBreakStartedContent("Nitish Sachar")} />
+            <Text id="break-header-break-started" content={getBreakStartedContent(creator.name)} />
         </div>
     </div>
 </Fragment>

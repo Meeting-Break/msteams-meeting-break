@@ -145,10 +145,10 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                     :
                     this.state.isAllowedToStartBreak ? 
                         <Fragment>
-                            {/* <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/> */}
+                            <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/>
                             <Break 
                                 breakDuration={this.state.breakDuration} 
-                                visible={ true } 
+                                visible={this.state.breakDuration !== undefined } 
                                 onCancel={() => this.onCancel()} 
                                 loading={this.state.isCancelling} 
                                 breakDetails={this.state.breakDetails!}
