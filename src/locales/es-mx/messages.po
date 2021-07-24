@@ -17,30 +17,42 @@ msgstr ""
 msgid "BreakCountDownTimer_RemainingTimeText"
 msgstr ""
 
-#: src/Components/BreakHeader/BreakHeader.tsx:16
+#: src/Components/BreakHeader/BreakHeader.tsx:21
 msgid "BreakHeader_ApplicationName"
 msgstr ""
 
-#: src/Components/BreakHeader/BreakHeader.tsx:17
+#: src/Components/BreakHeader/BreakHeader.tsx:12
 msgid "BreakHeader_BreakStarted"
 msgstr ""
 
-#: src/Components/Break/Break.tsx:25
+#: src/Components/Break/Break.tsx:21
 msgid "Break_Cancel"
 msgstr ""
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:35
+#: src/Components/GlobalErrorBoundary/GlobalErrorBoundary.tsx:23
+msgid "GlobalErrorBoundary_Error_Message"
+msgstr ""
+
+#: src/Components/SetBreakTime/SetBreakTime.tsx:40
 msgid "SetBreakTime_Instructions"
 msgstr "¿Cuánto dura el descanso?"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:40
+#: src/Components/SetBreakTime/SetBreakTime.tsx:45
 msgid "SetBreakTime_Minutes"
 msgstr "Minutos"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:50
+#: src/Components/SetBreakTime/SetBreakTime.tsx:55
 msgid "SetBreakTime_Seconds"
 msgstr "Segundos"
 
-#: src/Components/SetBreakTime/SetBreakTime.tsx:59
+#: src/Components/SetBreakTime/SetBreakTime.tsx:33
 msgid "SetBreakTime_Start"
 msgstr "Comienzo"
+
+#: src/Pages/SidePanel.tsx:144
+msgid "SidePanel_Loading_Message"
+msgstr ""
+
+#: src/Pages/SidePanel.tsx:159
+msgid "SidePanel_SetMeetingBreak_Error_Message"
+msgstr ""

@@ -9,13 +9,13 @@ class MeetingBreakApp extends Component {
   
       return (
         <Fragment>
-          <MeetingBreakServiceContextProvider>
-              <ApplicationInsightsContextProvider>
-                  <TeamsContextProvider>
-                      <SurfaceSelector/>
-                  </TeamsContextProvider>
-              </ApplicationInsightsContextProvider>
-            </MeetingBreakServiceContextProvider>
+            <MeetingBreakServiceContextProvider>
+                <ApplicationInsightsContextProvider>
+                    <TeamsContextProvider>
+                        <SurfaceSelector/>
+                    </TeamsContextProvider>
+                </ApplicationInsightsContextProvider>
+              </MeetingBreakServiceContextProvider>
         </Fragment>
       );
     }

@@ -7,6 +7,7 @@ import { Provider, teamsDarkV2Theme, teamsHighContrastTheme, ThemeInput} from '@
 import { i18n } from '@lingui/core'
 import { I18nProvider } from '@lingui/react'
 import { defaultLocale, dynamicActivate } from '../i18n'
+import { GlobalErrorBoundary } from '../Components/GlobalErrorBoundary/GlobalErrorBoundary';
 
 interface SurfaceSelectorProps {
     teamsContext: Context
@@ -56,7 +57,9 @@ class SurfaceSelector extends Component<SurfaceSelectorProps, SurfaceSelectorSta
                     <Fragment>
                         <I18nProvider i18n={i18n}>
                             <Provider theme={this.state.theme !== undefined ? this.state.theme : this.getTheme(this.props.teamsContext.theme)}>
-                                <SidePanelPage />
+                                <GlobalErrorBoundary>
+                                    <SidePanelPage />
+                                </GlobalErrorBoundary>
                             </Provider>
                         </I18nProvider>
                     </Fragment>
