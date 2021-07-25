@@ -7,5 +7,8 @@ var options = {
 };
 
 server.use("/", express.static("/home/site/wwwroot", options));
-
+server.use("/api/health", (req, res, next) => {
+  res.sendStatus(200);
+  return next();
+});
 server.listen(process.env.PORT);
