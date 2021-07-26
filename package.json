@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "BROWSER=none react-scripts start",
+    "start:ngrok": "ngrok http --region=us -subdomain=msteams-meeting-break 3000",
     "build": "react-scripts build",
     "build:teams": "cp resources/manifests/manifest.json resources/Manifest/manifest.json; cd resources/Manifest; zip -r -X ../../meeting-break-teams-package.zip .; cd ../../",
     "build:teams:dev": "cp resources/manifests/manifest.dev.json resources/Manifest/manifest.json; cd resources/Manifest; zip -r -X ../../meeting-break-teams-package.zip .; cd ../../",

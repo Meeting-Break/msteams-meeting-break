@@ -101,18 +101,20 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
             value: this.props.teamsContext.meetingId!
         }
         const breakDetails = await this.props.meetingBreakService.getBreak(meetingId);
-        if (!breakDetails || breakDetails.cancelled) {
-            return false;
-        }
-        const currentTime = new Date()
-        let remainingBreakDuration: Duration | undefined = undefined
-        if (((breakDetails.start.getTime() / 1000) + breakDetails.duration.TotalSeconds) > (currentTime.getTime() / 1000)) {
-            remainingBreakDuration = ToDuration(breakDetails.duration.TotalSeconds - ((currentTime.getTime() / 1000) - (breakDetails.start.getTime() / 1000)) )
-        }
-        this.setState({isLoading: false, breakDuration: remainingBreakDuration, breakDetails: breakDetails},() => {
-            if (remainingBreakDuration) {
-                this.timer = this.getTimer()
+        this.setState({ isLoading: false }, () => {
+            if (!breakDetails || breakDetails.cancelled) {
+                return false;
             }
+            const currentTime = new Date()
+            let remainingBreakDuration: Duration | undefined = undefined
+            if (((breakDetails.start.getTime() / 1000) + breakDetails.duration.TotalSeconds) > (currentTime.getTime() / 1000)) {
+                remainingBreakDuration = ToDuration(breakDetails.duration.TotalSeconds - ((currentTime.getTime() / 1000) - (breakDetails.start.getTime() / 1000)) )
+            }
+            this.setState({breakDuration: remainingBreakDuration, breakDetails: breakDetails},() => {
+                if (remainingBreakDuration) {
+                    this.timer = this.getTimer()
+                }
+            })
         })
     }
 
