@@ -7,7 +7,7 @@ var options = {
   index: "index.html",
 };
 
-server.use(compession());
+server.use(compression());
 server.use("/", express.static("/home/site/wwwroot", options));
 server.use("/api/health", (req, res, next) => {
   res.sendStatus(200);
