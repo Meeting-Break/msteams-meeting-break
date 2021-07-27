@@ -143,23 +143,25 @@ class SidePanel extends Component<SidePanelProps, SidePanelState> {
                 { this.state.isLoading ?
                     <Loader label={t `SidePanel_Loading_Message`}/>
                     :
-                    this.state.isAllowedToStartBreak ? 
                         <Fragment>
-                            <SetMeetingBreak startBreak={(breakTime) => this.onBreakStart(breakTime) } visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} isStartingBreak={this.state.isStartingBreak}/>
+                            <SetMeetingBreak 
+                                startBreak={(breakTime) => this.onBreakStart(breakTime) } 
+                                visible={this.state.isAllowedToStartBreak && this.state.breakDuration === undefined} 
+                                isStartingBreak={this.state.isStartingBreak}
+                            />
+                            <Alert 
+                                content={t `SidePanel_SetMeetingBreak_Error_Message`}
+                                danger
+                                visible={!this.state.isAllowedToStartBreak && this.state.breakDuration === undefined}
+                            />
                             <Break 
                                 breakDuration={this.state.breakDuration} 
                                 visible={this.state.breakDuration !== undefined } 
                                 onCancel={() => this.onCancel()} 
                                 loading={this.state.isCancelling} 
                                 breakDetails={this.state.breakDetails!}
-                                />    
+                            />    
                         </Fragment>
-                        :
-                        <Alert 
-                            content={t `SidePanel_SetMeetingBreak_Error_Message`}
-                            danger
-                            visible
-                        />
                 }
                 
             </div>
