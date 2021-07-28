@@ -9,7 +9,7 @@ import { Role } from "../Types/Role";
 import { TenantID } from "../Types/TenantID";
 
 export class MeetingBreakService {
-    private apiBaseUrl = "https://api.meetingbreak.app/"
+    private apiBaseUrl = process.env.NODE_ENV === "development" ? "https://msteams-meeting-break-bot.eu.ngrok.io/" :"https://api.meetingbreak.app/"
 
     public async getParticipantDetails(meetingId: MeetingID, participantId: ParticipantID, tenantId: TenantID) {
         const sendParticipantDetailsRequest = await axios.post(`${this.apiBaseUrl}api/sendParticipantDetails`,{
