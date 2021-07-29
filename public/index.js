@@ -9,7 +9,11 @@ var options = {
 };
 
 app.use(compression());
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 app.use("/", express.static("/home/site/wwwroot", options));
 app.use("/api/health", (req, res, next) => {
   res.sendStatus(200);
