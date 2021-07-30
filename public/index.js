@@ -12,6 +12,7 @@ app.use(compression());
 app.use(
   helmet({
     contentSecurityPolicy: false,
+    frameguard: false,
   })
 );
 app.use("/", express.static("/home/site/wwwroot", options));
